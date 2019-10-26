@@ -1,5 +1,11 @@
 package com.company;
 
+/**
+ * Главный класс. CheckStyle пишет по нему ошибку.
+ * @version 26.10.2019.
+ *
+ * @author Artem Gorelikov.
+ */
 public class Main {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
@@ -11,16 +17,21 @@ public class Main {
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_WHITE = "\u001B[37m";
 
-    public static void main(String[] args)
-    {
-        Utils Utils = new Utils(ColorEnum.RED);
+    public static void main(String[] args) {
+        Utils Utils0 = new Utils(ColorEnum.RED);
         Utils.print("Hello"); //Просто выводит текст
         Utils Utils1 = new Utils(ColorEnum.CYAN);
-        Utils.print("Любой текст", ColorEnum.CYAN); //Выводит текст того цвета, который определим в ColorEnum
+        Utils.print("Любой текст", ColorEnum.CYAN); //Цвет который в ColorEnum.
     }
 
-    public enum ColorEnum
-    {
+    /**
+     * Enum - содержит перечисления возможный цветов.
+     *
+     * @version 26.10.2019.
+     *
+     * @author Artem Gorelikov.
+     */
+    public enum ColorEnum {
         BLACK("Черный", 1),
         RED("Красный", 2),
         GREEN("Зеленый", 3),
@@ -30,25 +41,29 @@ public class Main {
         CYAN("Бирюзовый", 7),
         WHITE("Белый", 8);
 
-        public String color;
-        public String getColor() {return color;}
-        ColorEnum(String color, int x) {this.color = color; this} //x добавил для случайной выборки, но пока не смог реализвать
+        private String color;
+        public String getColor() {
+            return color; }
+        ColorEnum(final String color, final int x) {
+            this.color = color; } //x - для случайной выборки.
     }
 
-    public static class Utils
-    {
+    /**
+     * class Utils - выводит обычный текст или цветной текст.
+     *
+     * @version 26.10.2019.
+     *
+     * @author Artem Gorelikov.
+     */
+    public static class Utils {
         private String color;
-        public Utils(ColorEnum color) {
+        public Utils(final ColorEnum color) {
             this.color = color.getColor();
         }
-        public static void print(String text)
-        {
-            System.out.println(text);
-        }
-        public static void print(String text, ColorEnum color)
-        {
-            switch (color)
-            {
+        public static void print(final String text) {
+            System.out.println(text); }
+        public static void print(final String text, final ColorEnum color) {
+            switch (color) {
                 case BLACK: System.out.println(ANSI_BLACK + text + ANSI_RESET);
                     break;
                 case RED: System.out.println(ANSI_RED + text + ANSI_RESET);
@@ -64,6 +79,8 @@ public class Main {
                 case CYAN: System.out.println(ANSI_CYAN + text + ANSI_RESET);
                     break;
                 case WHITE: System.out.println(ANSI_WHITE + text + ANSI_RESET);
+                    break;
+                default:
                     break;
              }
         }
